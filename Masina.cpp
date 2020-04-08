@@ -1,6 +1,8 @@
 #include <string.h>
-#include <ostream>
+#include <iostream>
 #include "Masina.h"
+
+using namespace std;
 
 /*Constructorul*/
 Masina::Masina()
@@ -104,6 +106,7 @@ bool Masina::operator==(const Masina& m) {
 
 ostream& operator<<(ostream& os, const Masina& m)
 {
-	os << "NumePosesor - " << m.numePosesor << ", NrInmatriculare - " << m.nrInmatriculare << ",Status - " << m.status;
+	os << "NumePosesor - " << m.numePosesor << ", NrInmatriculare - " << m.nrInmatriculare << ",Status - " << m.status << endl;
 	return os;
 }
+

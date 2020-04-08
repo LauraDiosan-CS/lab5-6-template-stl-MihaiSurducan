@@ -9,11 +9,12 @@ private:
 	list<Masina> elem;
 public:
 	Repository();
-	void addElem(Masina);
+	int addElem(Masina);
 	void updateElem(Masina, const char*, const char*, const char*);
 	int findElem(Masina);
 	int delElem(Masina);
 	list<Masina> getAll();
+	bool findMasina(Masina);
 	int size();
 	~Repository();
 };

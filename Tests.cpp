@@ -3,6 +3,7 @@
 #include <assert.h>
 #include "Masina.h"
 #include "Repository.h"
+#include "Service.h"
 
 using namespace std;
 
@@ -37,6 +38,7 @@ void TestMasina()
 	assert(M6.getNumePosesor() == NULL);
 }
 
+/*Teste Repository*/
 void TestRepository()
 {
 	Masina M1("Andrei", "B999FGH", "New");
@@ -48,7 +50,31 @@ void TestRepository()
 	rep.addElem(M2);
 	rep.addElem(M3);
 	rep.addElem(M4);
+	list<Masina> l = rep.getAll();
+	assert(l.front() == M1 );
+	assert(l.back() == M4);
 	assert(rep.size() == 4);
+
+}
+
+/*Teste Service*/
+void TestService()
+{
+	Masina M1("Andrei", "B999FGH", "Ocupat");
+	Masina M2("Vlad", "CJ89DGI", "Liber");
+	Masina M3("George", "BH69CSM", "Liber");
+	Masina M4("David", "TM19GYM", "Ocupat");
+	Service ser;
+	ser.addMasina(M1);
+	ser.addMasina(M2);
+	ser.addMasina(M3);
+	ser.addMasina(M4);
+	list<Masina> l = ser.getAll();
+	assert(l.front() == M1);
+	assert(l.back() == M4);
+	ser.delMasina(M1);
+	list<Masina> d = ser.getAll();
+	assert(d.front() == M2);
 }
 
 void MainTests()
@@ -56,5 +82,7 @@ void MainTests()
 	cout << "Firsts Tests" << endl;
 	TestMasina();
 	TestRepository();
+	TestService();
 	cout << "Perfect" << endl;
+	cout << endl;
 }

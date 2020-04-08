@@ -10,9 +10,20 @@ Repository::Repository()
 }
 
 /*Adaugare element*/
-void Repository::addElem(Masina m)
+int Repository::addElem(Masina m)
 {
-	elem.push_back(m);
+	list<Masina>::iterator it;
+	int ok = 1;
+	for (it = elem.begin(); it != elem.end(); it++)
+		if (strcmp((*it).getNrInmatriculare(), m.getNrInmatriculare()) == 0)
+			ok = 0;
+	it = find(elem.begin(), elem.end(), m);
+	if (it == elem.end() and ok == 1)
+	{
+		elem.push_back(m);
+		return 1;
+	}
+	return 0;
 }
 
 /*Modificare elem*/
@@ -60,6 +71,14 @@ list<Masina> Repository::getAll()
 int Repository::size()
 {
 	return elem.size();
+}
+
+bool Repository::findMasina(Masina m) {
+	list<Masina>::iterator it;
+	it = find(elem.begin(), elem.end(), m);
+	if (it != elem.end())
+		return true;
+	return false;
 }
 
 Repository::~Repository()

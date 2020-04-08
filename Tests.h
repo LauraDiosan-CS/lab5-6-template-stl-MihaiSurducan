@@ -1,4 +1,5 @@
 #pragma once
 void TestMasina();
-void TestRepo();
+void TestRepository();
 void MainTests();
+void TestService();

@@ -1,5 +1,6 @@
 #pragma once
-#include <ostream>
+#include <iostream>
+
 using namespace std;
 
 class Masina {
@@ -20,6 +21,6 @@ public:
 	void setNrInmatriculare(const char*);
 	void setStatus(const char*);
 	bool operator==(const Masina&);
-	friend ostream& operator<<(ostream& os, const Masina& p);
+	friend ostream& operator<<(ostream& os, const Masina& m);
 	~Masina();
 };
