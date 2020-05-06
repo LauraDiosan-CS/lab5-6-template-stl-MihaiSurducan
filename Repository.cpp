@@ -1,12 +1,12 @@
 #include "Repository.h"
 #include <string>
+#include <fstream>
 
 using namespace std;
 
-
+/*Constructorul*/
 Repository::Repository()
 {
-
 }
 
 /*Adaugare element*/
@@ -27,7 +27,7 @@ int Repository::addElem(Masina m)
 }
 
 /*Modificare elem*/
-void Repository::updateElem(Masina m, const char* newNumePosesor, const char* newNrInmatriculare, const char* newStatus)
+void Repository::updateElem(const Masina& m, const char* newNumePosesor, const char* newNrInmatriculare, const char* newStatus)
 {
 	list<Masina>::iterator it;
 	it = find(elem.begin(), elem.end(), m);
@@ -51,7 +51,7 @@ int Repository::findElem(Masina m)
 }
 
 //sterge elementul s din repository, returneaza 0 la succes, -1 altfel
-int Repository::delElem(Masina m)
+int Repository::delElem(const Masina& m)
 {
 	list<Masina>::iterator it;
 	it = find(elem.begin(), elem.end(), m);
@@ -63,17 +63,20 @@ int Repository::delElem(Masina m)
 
 }
 
+/*Returneaza toate elementele*/
 list<Masina> Repository::getAll()
 {
 	return elem;
 }
 
+/*REturneaza numarul de elemente*/
 int Repository::size()
 {
 	return elem.size();
 }
 
-bool Repository::findMasina(Masina m) {
+/*Cautare Masina*/
+bool Repository::findMasina(const Masina& m) {
 	list<Masina>::iterator it;
 	it = find(elem.begin(), elem.end(), m);
 	if (it != elem.end())
@@ -81,6 +84,21 @@ bool Repository::findMasina(Masina m) {
 	return false;
 }
 
+/*Returneaza elemntul de pe poz i*/
+Masina Repository::getItemFromPos(int i) {
+	list<Masina>::iterator it;
+	int k = 0;
+	for (it = elem.begin(); it != elem.end(); it++)
+	{
+		if (k == i)
+			return *it;
+		k++;
+
+	}
+	return Masina("", "", "");
+}
+
+/*Destructorul*/
 Repository::~Repository()
 {
 

@@ -51,7 +51,7 @@ void TestRepository()
 	rep.addElem(M3);
 	rep.addElem(M4);
 	list<Masina> l = rep.getAll();
-	assert(l.front() == M1 );
+	assert(l.front() == M1);
 	assert(l.back() == M4);
 	assert(rep.size() == 4);
 
@@ -64,25 +64,25 @@ void TestService()
 	Masina M2("Vlad", "CJ89DGI", "Liber");
 	Masina M3("George", "BH69CSM", "Liber");
 	Masina M4("David", "TM19GYM", "Ocupat");
-	Service ser;
-	ser.addMasina(M1);
-	ser.addMasina(M2);
-	ser.addMasina(M3);
-	ser.addMasina(M4);
+	RepositoryTemplate<Masina> repo;
+	Service ser(repo);
+	ser.addMasinaService(M1);
+	ser.addMasinaService(M2);
+	ser.addMasinaService(M3);
+	ser.addMasinaService(M4);
 	list<Masina> l = ser.getAll();
 	assert(l.front() == M1);
 	assert(l.back() == M4);
-	ser.delMasina(M1);
-	list<Masina> d = ser.getAll();
-	assert(d.front() == M2);
+	ser.delMasinaService(M1);
 }
 
+/*In aceasta functie apelem testele de mai sus*/
 void MainTests()
 {
-	cout << "Firsts Tests" << endl;
+	cout << "Primele teste" << endl;
 	TestMasina();
 	TestRepository();
 	TestService();
-	cout << "Perfect" << endl;
+	cout << "Testel au fost perfecte" << endl;
 	cout << endl;
 }

@@ -1,17 +1,18 @@
 #pragma once
-#include "Masina.h"
-#include "Repository.h"
 #include "Service.h"
 
 class UI {
 private:
-	Service s;
-public:
-	UI();
+	Service service;
 	void printMenu();
-	void addMasina(Service& s);
-	void getAll(Service& s);
-	void delMasina(Service& s);
-	void updateMasina(Service& s);
+	void addMasina();
+	void delMasina();
+	void updateMasina();
+	void printAll();
+	void intrareParcare();
+	void iesireParcare();
+public:
+	UI(Service& s) :service(s) {};
+	void run();
 	~UI();
 };

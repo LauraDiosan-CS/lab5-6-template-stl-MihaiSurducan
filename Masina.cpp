@@ -1,112 +1,148 @@
+#include "Masina.h"
 #include <string.h>
 #include <iostream>
-#include "Masina.h"
 
 using namespace std;
 
 /*Constructorul*/
-Masina::Masina()
+Masina::Masina() 
 {
 	numePosesor = NULL;
 	nrInmatriculare = NULL;
 	status = NULL;
 }
 
-Masina::Masina(const char* numePosesor, const char* nrInmatriculare, const char* status) {
-	this->numePosesor = new char[strlen(numePosesor) + 1];
-	strcpy_s(this->numePosesor, strlen(numePosesor) + 1, numePosesor);
+Masina::Masina(const char* nume, const char* nr, const char* sta)
+{
+	numePosesor = new char[strlen(nume) + 1];
+	strcpy_s(numePosesor, strlen(nume) + 1, nume);
 
-	this->nrInmatriculare = new char[strlen(nrInmatriculare) + 1];
-	strcpy_s(this->nrInmatriculare, strlen(nrInmatriculare) + 1, nrInmatriculare);
-
-	this->status = new char[strlen(status) + 1];
-	strcpy_s(this->status, strlen(status) + 1, status);
-}
-
-Masina::Masina(const Masina& m) {
-	this->numePosesor = new char[strlen(m.numePosesor) + 1];
-	strcpy_s(this->numePosesor, strlen(m.numePosesor) + 1, m.numePosesor);
+	nrInmatriculare = new char[strlen(nr) + 1];
+	strcpy_s(nrInmatriculare, strlen(nr) + 1, nr);
 	
-	this->nrInmatriculare = new char[strlen(m.nrInmatriculare) + 1];
-	strcpy_s(this->nrInmatriculare, strlen(m.nrInmatriculare) + 1, m.nrInmatriculare);
-
-	this->status = new char[strlen(m.status) + 1];
-	strcpy_s(this->status, strlen(m.status) + 1, m.status);
+	status = new char[strlen(sta) + 1];
+	strcpy_s(status, strlen(sta) + 1, sta);
 }
 
-/*Returnarea valorii numarului de inmatriculare*/
-char* Masina::getNrInmatriculare() {
-	return nrInmatriculare;
+Masina::Masina(const Masina& m) 
+{
+	numePosesor = new char[strlen(m.numePosesor) + 1];
+	strcpy_s(numePosesor, strlen(m.numePosesor) + 1, m.numePosesor);
+
+	nrInmatriculare = new char[strlen(m.nrInmatriculare) + 1];
+	strcpy_s(nrInmatriculare, strlen(m.nrInmatriculare) + 1, m.nrInmatriculare);
+
+	status = new char[strlen(m.status) + 1];
+	strcpy_s(status, strlen(m.status) + 1, m.status);
 }
 
-/*Schimbarea numarului de inmatriculare*/
-void Masina::setNrInmatriculare(const char* n) {
-	if (nrInmatriculare) delete[]nrInmatriculare;
-	nrInmatriculare = new char[strlen(n) + 1];
-	strcpy_s(nrInmatriculare, strlen(n) + 1, n);
-}
-
-/*Returnarea numelui posesorului*/
-char* Masina::getNumePosesor() {
+/*Returneaza Numele Posesorului*/
+char* Masina::getNumePosesor() 
+{
 	return numePosesor;
 }
 
-/*Schimbarea numelui posesorului*/
-void Masina::setNumePosesor(const char* n) {
-	if (numePosesor) delete[]numePosesor;
-	numePosesor = new char[strlen(n) + 1];
-	strcpy_s(numePosesor, strlen(n) + 1, n);
+/*Schimbam Numele Posesorului*/
+void Masina::setNumePosesor(const char* newNumePosesor) 
+{
+	if (numePosesor) delete[] numePosesor;
+	numePosesor = new char[strlen(newNumePosesor) + 1];
+	strcpy_s(numePosesor, strlen(newNumePosesor) + 1, newNumePosesor);
 }
 
-/*Returnarea statusului*/
+/*Returneaza Numarul de Inmatriculare*/
+char* Masina::getNrInmatriculare() 
+{
+	return nrInmatriculare;
+}
+
+/*Schimbam numarul de inmatriculare*/
+void Masina::setNrInmatriculare(const char* newNrInmatriculare)
+{
+	if (nrInmatriculare) delete[] nrInmatriculare;
+	nrInmatriculare = new char[strlen(newNrInmatriculare) + 1];
+	strcpy_s(nrInmatriculare, strlen(newNrInmatriculare) + 1, newNrInmatriculare);
+}
+
+/*Returneaza statusul masinii*/
 char* Masina::getStatus()
 {
 	return status;
 }
 
-/*Schimbarea statusului*/
-void Masina::setStatus(const char* n) {
-	if (status) delete[]status;
-	status = new char[strlen(n) + 1];
-	strcpy_s(status, strlen(n) + 1, n);
+//Schimbam statusul masinii
+void Masina::setStatus(const char* newStatus) 
+{
+	if (status)	delete[] status;
+	status = new char[strlen(newStatus) + 1];
+	strcpy_s(status, strlen(newStatus) + 1, newStatus);
 }
 
-/*Destructorul*/
-Masina::~Masina() {
-	if (numePosesor) delete[]numePosesor;
-	numePosesor = NULL;
-
-	if (nrInmatriculare) delete[]nrInmatriculare;
-	nrInmatriculare = NULL;
-	
-	if (status) delete[]status;
-	status = NULL;
-}
-
-Masina& Masina::operator=(const Masina& m) {
-	if (this == &m) return *this; //self-assignment
-
-	if (numePosesor) delete[]numePosesor;
-	numePosesor = new char[strlen(m.numePosesor) + 1];
-	strcpy_s(numePosesor, strlen(m.numePosesor) + 1, m.numePosesor);
-
-	if (nrInmatriculare) delete[]nrInmatriculare;
-	nrInmatriculare = new char[strlen(m.nrInmatriculare) + 1];
-	strcpy_s(nrInmatriculare, strlen(m.nrInmatriculare) + 1, m.nrInmatriculare);
-
-	if (status) delete[]numePosesor;
-	status = new char[strlen(m.status) + 1];
-	strcpy_s(status, strlen(m.status) + 1, m.status);
+Masina& Masina::operator=(const Masina& m) 
+{
+	if (this == &m) return *this;
+	if (m.numePosesor)	setNumePosesor(m.numePosesor);
+	if (m.nrInmatriculare)	setNrInmatriculare(m.nrInmatriculare);
+	if (m.status)	setStatus(m.status);
 	return *this;
 }
 
-bool Masina::operator==(const Masina& m) {
-	return (strcmp(numePosesor, m.numePosesor) == 0) and (strcmp(nrInmatriculare, m.nrInmatriculare) == 0) and (strcmp(status, m.status) == 0);
+/*Declaram operatorul de egalitate*/
+bool Masina::operator==(const Masina& m) 
+{
+	if (m.numePosesor and m.nrInmatriculare and m.status)
+		return (strcmp(numePosesor, m.numePosesor) == 0 and strcmp(nrInmatriculare, m.nrInmatriculare) == 0 and strcmp(status, m.status) == 0);
+	return false;
 }
 
-ostream& operator<<(ostream& os, const Masina& m)
+/*Cu ajutorul acestei functiei putem afisa un obiect de tip Masina*/
+ostream& operator<<(ostream& os, Masina m) 
 {
-	os << "NumePosesor - " << m.numePosesor << ", NrInmatriculare - " << m.nrInmatriculare << ",Status - " << m.status << endl;
+	if (m.getNumePosesor())
+		os << "NumePosesor - " << m.getNumePosesor() << "	NrInmatriculare - " << m.getNrInmatriculare() << "     Status - " << m.getStatus() << endl;
 	return os;
 }
 
+/*Declaram operatorul de citire pentru un obiect de tip Masina*/
+istream& operator>>(istream& is, Masina& m)
+{
+	cout << "Nume Posesor: ";
+	char* nume = new char[25];
+	is >> nume;
+
+	cout << "Numar de Inmatriculare: ";
+	char* nr = new char[25];
+	is >> nr;
+
+	cout << "Status (liber sau ocupat): ";
+	char* status = new char[25];
+	is >> status;
+
+	m.setNumePosesor(nume);
+	m.setNrInmatriculare(nr);
+	m.setStatus(status);
+
+	delete[] nume;
+	delete[] nr;
+	delete[] status;
+	return is;
+}
+
+/*Destructorul*/
+Masina::~Masina() 
+{
+	if (numePosesor){
+		delete[] numePosesor;
+		numePosesor = NULL;
+	}
+
+	if (nrInmatriculare){
+		delete[] nrInmatriculare;
+		nrInmatriculare = NULL;
+	}
+
+	if (status){
+		delete[] status;
+		status = NULL;
+	}
+}
